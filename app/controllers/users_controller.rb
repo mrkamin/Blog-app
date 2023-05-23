@@ -1,3 +1,9 @@
 class UsersController < ApplicationController
-  # Controller actions and logic can be defined here
+  def index
+    @users = User.all
+  end
+
+  def show
+    @user = User.find(params[:id])
+  end
 end
