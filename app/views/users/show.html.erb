@@ -1,1 +1,38 @@
-<h1>Here is user index 1 page</h1>
+<main>
+        <section>
+            <article class="home_cards">
+                <figure>
+                    <img src=<%= @user.photo %> alt="<%= @user.name %>">
+                </figure>
+                <div class="home_cards_details">
+                    <h3>Username: <%= @user.name %></h3>
+                    <p>Number of posts: <%= @user.posts_counter %></p>
+                </div>
+            </article>
+        </section>
+
+        <section class="user_details_bio_section">
+            <header>
+                <h3>Bio</h3>
+            </header>
+            <article>
+                <p><%= @user.bio %></p>
+            </article>
+        </section>
+
+        <section class="user_details_post_section">
+            <% @user.latest_three_posts.each do |post| %>
+            <%= link_to user_post_path(@user.id, post.id), class:"td_none" do %>
+            <article>
+                <header> <h3><%= post.title %></h3></header>
+                <div><p><%= post.text %></p></div>
+            </article>
+            <% end %>
+            <% end %>
+            
+
+            <div class="see_all_btnbox">
+                <button><%= link_to "See all posts", user_posts_path(@user), class:"td_none" %></button>
+            </div>
+        </section>
+    </main>

@@ -1,1 +1,23 @@
-<h1>Here is a particular posts of index 4 for a user</h1>
+<main>
+        <section class="post_details_section1">
+            <article class="post_details_section1_card">
+                <header>
+                    <h3><%= @post.title %> by <%= @post.author.name %></h3>
+                    <ul class="post_interaction list_style_none">
+                        <li>Comments: <%= @post.comments_counter || 0 %></li>
+                        <li>Likes: <%= @post.likes_counter || 0 %></li>
+                    </ul>
+                </header>
+                
+                <div class="post_details_section1_card_text">
+                    <p><%= @post.text %></p>
+                </div>
+            </article> 
+
+            <ul class="post_details_section1_user_comment_box list_style_none">
+             <% @post.latest_five_comments.each do |comment| %>
+                <li> <%= comment.author.name %>: <%= comment.text %></li>
+             <% end %>
+            </ul>
+        </section>
+    </main>
