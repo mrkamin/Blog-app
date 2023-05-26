@@ -1,2 +1,50 @@
+<main>
+        <section class="post_section1">
+            <article class="home_cards">
+                <figure>
+                    <img src='<%= @user.photo %>' alt='<%= @user.name %>'>
+                </figure>
+                <div class="home_cards_details">
+                    <h3>Username: <%= @user.name %></h3>
+                    <p>Number of posts: <%= @user.posts_counter %></p>
+                </div>
+            </article> 
+        </section>
+        
+        <section class="post_page_post_details">
+        <% @user.posts.each do |post| %>
+            <article>
+                <div class="post_page_post_details_div" >
+                    <header><h3><%= link_to post.title, user_post_path(@user, post), class:"td_none" %></h3></header>
+                    <div><p><%= post.text %></p></div>
 
-<h1>Posts attached to a user Page</h1>
+                    <ul class="post_page_interaction list_style_none">
+                        <li>Comments: <%= post.comments_counter || 0%></li>
+                        <li>Likes: <%= post.likes_counter || 0 %> </li>
+                    </ul>
+
+                </div>
+
+                <ul class="post_page_user_comment_box list_style_none">
+                <% if !post.latest_five_comments %>
+                 <li>No comments added!</li>  
+                   <% else %>
+                    <% post.latest_five_comments.each do |comment| %>
+                    <li><%= comment.author.name %>: <%= comment.text %></li> 
+                 <% end %>
+                <% end %>
+                </ul>
+                
+            </article>
+ <% end %>
+        </section>
+
+        <div class="post_page_pagination">
+            <ul class="list_style_none">
+                <li>Page 1</li>
+                <li>Page 2</li>
+                <li>Page 3</li>
+                <li>Page 4</li>
+            </ul>
+        </div>
+    </main>

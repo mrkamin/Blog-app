@@ -1,2 +1,18 @@
+<main>
+<section class="section1">
 
-<h1>Users Page</h1>
+<% @users.each do |user| %>
+    <article class="home_cards">
+        <figure>
+            <img src=<%= user.photo %> alt='<%= user.name %>'>
+        </figure>
+        <div class="home_cards_details">
+        <h2></h2>
+            <h3>Username: <%= link_to user.name, user_path(user.id), class:"td_none" %></h3>
+            <p>Number of posts: <%= user.posts_counter %></p>
+        </div>
+    </article>
+<% end %>
+
+</section>
+</main>
