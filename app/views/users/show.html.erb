@@ -29,7 +29,9 @@
             </article>
             <% end %>
             <% end %>
-            
+            <div class="see_all_btnbox">
+            <button><%= link_to "Create new post", new_user_post_path(@showcurrentuser.id), class:"td_none" %></button>
+        </div>
 
             <div class="see_all_btnbox">
                 <button><%= link_to "See all posts", user_posts_path(@user), class:"td_none" %></button>
