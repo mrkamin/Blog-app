@@ -1,5 +1,5 @@
 require 'rails_helper'
-
+# rubocop:disable Layout/LineLength
 RSpec.describe 'Showing all posts', type: :feature do
   before(:each) do
     @first_user = User.create(name: 'Tom Hinns',
@@ -10,7 +10,7 @@ RSpec.describe 'Showing all posts', type: :feature do
                               photo: 'https://images.squarespace-cdn.com/content/v1/58d1b3ff1b631bb1893d108d/813f4928-6cc6-4bc8-a4e4-265f94b4d665/matthew-hamilton-tNCH0sKSZbA-unsplash.jpg', bio: 'I am a tech professional from New york. Birthing and amplifying ideas are what my years of tech business has refined me to love. Want to connect? Hit me up guys!. Lets connect.')
     @fourth_user = User.create(name: 'Jemimah Bolaji',
                                photo: 'https://burst.shopifycdn.com/photos/modern-woman-posing-in-city.jpg', bio: 'I am a hollywood actress from San Francisco. I love and value my job, its basically a reflex than an art. Want to connect? Hit me up guys!. Lets connect.')
-
+    # rubocop:enable Layout/LineLength
     @first_post = Post.create(author: @first_user, title: 'Hi Kadarshians', text: 'This is my first post')
     @second_post = Post.create(author: @first_user, title: 'Hi Ashimolowos...', text: 'This is my second post')
     @third_post = Post.create(author: @first_user, title: 'Hi Benjamins...', text: 'This is my third post')
