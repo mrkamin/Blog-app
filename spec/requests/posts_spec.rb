@@ -37,7 +37,7 @@ RSpec.describe 'Posts', type: :request do
     end
     it 'post detail respond body with correct place holder' do
       get "/users/#{user.id}/posts/#{post.id}"
-      expect(response.body).to include('Here is a particular posts of index 4 for a user')
+      expect(response.body).to include('h3', text: 'Title 1 by Tom')
     end
   end
 end
