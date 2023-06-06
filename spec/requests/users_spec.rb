@@ -1,6 +1,8 @@
 require 'rails_helper'
-RSpec.describe 'Posts', type: :request do
-  user = User.new(name: 'Tom Hinns', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.',
+RSpec.describe 'Users', type: :request do
+  user = User.new(name: 'Tom Hinns',
+                  photo: 'https://unsplash.com/photos/F_-0BxGuVvo',
+                  bio: 'Anything test',
                   posts_counter: 0)
   user.save
 
@@ -16,6 +18,7 @@ RSpec.describe 'Posts', type: :request do
     it 'post respond body with correct place holder' do
       get "/users/#{user.id}/posts/"
       expect(response.body).to include('Tom Hinns')
+   
     end
   end
   describe 'User GET /show' do
@@ -27,6 +30,7 @@ RSpec.describe 'Posts', type: :request do
       get "/users/#{user.id}"
       expect(response).to render_template(:show)
     end
+
     it 'post detail respond body with correct place holder' do
       get "/users/#{user.id}/posts/#{post.id}"
       expect(response.body).to include('Tom Hinns')
