@@ -20,7 +20,6 @@ RSpec.describe 'Users', type: :request do
     it 'user respond body with correct place holder' do
       get '/users/'
       expect(response.body).to include('Tom Hinns')
-   
     end
   end
   describe "User GET /show'" do
