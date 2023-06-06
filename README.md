@@ -101,6 +101,12 @@ rails s
 - Twitter: [@twitterhandle](https://twitter.com/Mohamma63974237)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/mohammad-rafi-amin-63b4319b/)
 
+👤 **Felipe Haybar**
+
+- GitHub: [@Feliverse](https://github.com/Feliverse)
+- Twitter: [@FelipeHaybar](https://twitter.com/FelipeHaybar)
+- LinkedIn: [FelipeHaybar](https://linkedin.com/in/FelipeHaybar)
+
 <!-- FUTURE FEATURES -->
 
 ## 🔭 Future Features <a name="future-features"></a>

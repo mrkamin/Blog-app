@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
-  user = User.new(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.',
+  user = User.new(name: 'Tom Hinns', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.',
                   posts_counter: 0)
 
   subject do
@@ -44,7 +44,7 @@ RSpec.describe Post, type: :model do
     expect(subject).to_not be_valid
   end
   describe '#latest_five_comments, update_post_counter private methods' do
-    let(:user1) { User.new(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.', posts_counter: 0) }
+    let(:user1) { User.new(name: 'Tom Hinns', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.', posts_counter: 0) }
     let(:post) { Post.new(author: user1, text: '1', title: '1') }
     let!(:comment1) { Comment.new(author: user1, post:, text: '1') }
     let!(:comment2) { Comment.new(author: user1, post:, text: '2') }
@@ -57,10 +57,10 @@ RSpec.describe Post, type: :model do
       post.save
     end
     it 'returns the five most recent comments' do
-      expect(post.latest_five_comments).to eq([])
+      expect(post.latest_five_comments).to eq([comment5, comment4, comment3, comment2, comment1])
     end
     it 'it should update user posts_counter' do
-      expect(user1.posts_counter).to eq(0)
+      expect(user1.posts_counter).to eq(1)
     end
   end
 end
