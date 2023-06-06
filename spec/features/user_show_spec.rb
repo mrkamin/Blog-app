@@ -9,8 +9,6 @@ RSpec.describe 'Showing a user details', type: :feature do
                               photo: 'https://unsplash.com/.jpg', bio: 'I am a tech professional from New york.')
     @fourth_user = User.create(name: 'Jemimah Bolaji',
                                photo: 'https://unsplash.com/.jpg', bio: 'I am a hollywood actress from San Francisco. ')
-
-
     @first_post = Post.create(author: @first_user, title: 'Hi Kadarshians', text: 'This is my first post')
     @second_post = Post.create(author: @first_user, title: 'Hi Ashimolowos...', text: 'This is my second post')
     @third_post = Post.create(author: @first_user, title: 'Hi Benjamins...', text: 'This is my third post')
