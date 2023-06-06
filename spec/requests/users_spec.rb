@@ -31,7 +31,7 @@ RSpec.describe 'Users', type: :request do
       get "/users/#{user.id}"
       expect(response).to render_template(:show)
     end
-    it 'user detail respond body with correct place holder' do
+    it 'user detail respond body with correct place holdr' do
       get "/users/#{user.id}"
       expect(response.body).to include('Tom Hinns')
     end
