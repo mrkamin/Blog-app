@@ -1,0 +1,478 @@
+# README
+
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
+
+posts
+      t.references  :author, null: false, foreign_key: { to_table: :users }
+
+comment
+      t.references :author, foreign_key: { to_table: :users }
+      t.references :post, foreign_key: { to_table: :posts }
+
+Likes
+ t.references :post, foreign_key: { to_table: :posts }
+      t.references :author, foreign_key: { to_table: :users}
+
+
+
+rails g scaffold User name:string photo:string bio:text posts_counter:integer 
+
+rails generate model User name:string photo:string bio:text posts_counter:integer 
+
+rails generate model Comment text:text author_id:references post_id:references
+rails generate model Comment text:text author_id:string post_id:string
+
+rails generate model Post title:string text:text comments_counter:integer likes_counter:integer author_id:references
+
+rails generate model Like author_id:references post_id:references
+
+   Prefix Verb                    URI Pattern                        Controller#Action
+    users GET                     /users(.:format)                    users#index
+          POST                    /users(.:format)                    users#create
+ new_user GET                     /users/new(.:format)                users#new
+edit_user GET                     /users/:id/edit(.:format)           users#edit
+     user GET                     /users/:id(.:format)                users#show
+          PATCH                   /users/:id(.:format)                users#update
+          PUT                     /users/:id(.:format)                users#update
+          DELETE                  /users/:id(.:format)    
+
+
+gem install kaminari
+
+
+# posts.all.length
+
+
+  # expect(first_post.comments).to eq([first_post, second_post, third_post]) 
+  # expect(page).to have_content(@first_comment)
+  # (comments_counter: post.comments.all.length)
+  # @first_like = Like.create(post: first_post, author: first_user, text: 'Hi Tom Hinns!' )
+  # user_post_likes_path(@post.author, @post)
+
+
+first_user = User.create(name: 'Tom Hinns', photo: 'https://c.files.bbci.co.uk/C870/production/_112921315_gettyimages-876284806.jpg', bio: 'I am a teacher from Mexico. I love and value my job, it is basically a reflex than an art.')
+
+second_user = User.create(name: 'Lilly Fillia', photo: 'https://burst.shopifycdn.com/photos/woman-dressed-in-white-leans-against-a-wall.jpg', bio: 'I am a slutty model from Bahamas. Adding values to brands with my personality and cult-like following. Brand marketing has changed dynamically since i arrived the art. It was made for me.')
+
+third_user = User.create(name: 'Merkel Damian', photo: 'https://images.squarespace-cdn.com/content/v1/58d1b3ff1b631bb1893d108d/813f4928-6cc6-4bc8-a4e4-265f94b4d665/matthew-hamilton-tNCH0sKSZbA-unsplash.jpg', bio: 'I am a tech professional from New york. Birthing and amplifying ideas are what my years of tech business has refined me to love. Want to connect? Hit me up guys!. Let us connect.')
+
+fourth_user = User.create(name: 'Jemimah Bolaji', photo: 'https://burst.shopifycdn.com/photos/modern-woman-posing-in-city.jpg', bio: 'I am a hollywood actress from San Francisco. I love and value my job, it is basically a reflex than an art. Want to connect? Hit me up guys!. Lets connect.')
+
+
+
+first_post = Post.create(author: first_user, title: 'Watsup Onoja...', text: 'This is my first day at school')
+second_post = Post.create(author: first_user, title: 'Hello Ameh...', text: 'This is my second day at Zanzibar')
+third_post = Post.create(author: first_user, title: 'Hey Umunna...', text: 'This is my third post on Nairaland Blog')
+fourth_post = Post.create(author: first_user, title: 'Hi Ogbonna...', text: 'This is my fourth appearance at Forbes under 30')
+
+fifth_post = Post.create(author: second_user, title: 'Good tidings Ugboaja...', text: 'This is my fifth post on Facebook after a decade. Getting consistent at dishing content.')
+
+sixth_post = Post.create(author: third_user, title: 'Great works Ebenezer...', text: 'This is my sixth dish in 2 hous...Unto Hilda Baci energy')
+
+seventh_post = Post.create(author: fourth_user, title: 'Compliments John...', text: 'This is the seventh show i am viewing after watching Keeping up with the Kardashians.')
+
+Comment.create(post: first_post, author: first_user, text: 'Hi Samantha Hinns!' )
+Comment.create(post: first_post, author: first_user, text: 'Hi Chris Tollgate!' )
+Comment.create(post: fifth_post, author: first_user, text: 'Hi Lionel Messi!' )
+Comment.create(post: sixth_post, author: first_user, text: 'Hi Christiano Ronaldo!' )
+Comment.create(post: second_post, author: first_user, text: 'Hi Eberechi Nwangwu!' )
+
+Comment.create(post: first_post, author: second_user, text: 'Hi Robert Offiong!' )
+Comment.create(post: second_post, author: second_user, text: 'Hi Leyden Pulse!' )
+Comment.create(post: sixth_post, author: second_user, text: 'Hi Mtn Nigeria!' )
+Comment.create(post: third_post, author: second_user, text: 'Hi Globacom Telecommunication!' )
+Comment.create(post: third_post, author: second_user, text: 'Hi Data is Life!' )
+
+Comment.create(post: first_post, author: third_user, text: 'Hi Erotic Damian!' )
+Comment.create(post: first_post, author: fourth_user, text: 'Hi Sultry Bolaji!' )
+
+
+User.where(name:'emeka').destroy_all
+
+
+
+
+def show
+  @user = User.find(params[:id])
+  if params[:id] == 'sign_out'
+    sign_out_and_redirect
+  else
+    @user = User.find_by(id: params[:id])
+  redirect_to users_path, alert: 'User not found' unless @user
+  end
+end
+
+
+
+
+
+  # def show
+  #   @user = User.find(params[:id])
+  #   # @showcurrentuser = current_user
+  # end
+
+  # def show
+  #   if params[:id] == 'sign_out'
+  #     sign_out current_user
+  #     redirect_to new_user_session_path
+  #   @user = User.find(params[:id])
+  #   # @showcurrentuser = current_user
+  # end
+
+# private
+
+# def sign_out_and_redirect
+#   sign_out current_user
+#   redirect_to new_user_session_path
+# end
+
+# def current_user
+#   @current_user = User.first
+# def find_user
+#   @user = User.find_by(id: params[:id])
+#   redirect_to users_path, alert: 'User not found' unless @user
+end
+
+gem 'mailcatcher'
+
+
+
+
+
+
+
+
+
+
+
+
+
+# devise_parameter_sanitizer.permit(:sign_up, keys: [:username])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class UsersController < ApplicationController
+  def index
+    @users = User.all
+  end
+
+  def show
+    if params[:id] == 'sign_out'
+      sign_out current_user
+      redirect_to new_user_session_path
+    else
+      @user = User.find_by(id: params[:id])
+      redirect_to users_path, alert: 'User not found' unless @user
+    end
+  end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable, :confirmable
+  has_many :posts, foreign_key: :author_id, dependent: :delete_all
+  has_many :comments, foreign_key: :author_id, dependent: :delete_all
+  has_many :likes, foreign_key: :author_id, dependent: :delete_all
+
+  validates :name, presence: true, length: { maximum: 250 }
+
+  validates :posts_counter, numericality: { only_integer: true }, comparison: { greater_than_or_equal_to: 0 }
+
+  def latest_three_posts
+    posts.order(created_at: :desc).limit(3)
+  end
+
+  def first_three_posts
+    posts.order(created_at: :asc).limit(3)
+  end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+ <div class="field">
+      <%# <%= f.label :name, class:'user_field' %>
+      <%# <br />  %>
+      <%= f.text_field :name, autofocus: true, placeholder: "Enter Name", class:'user_input' %>
+    </div>
+    <br>
+    <%# Password (6 characters minimum) %>
+  <div class="field">
+    <%# <%= f.label :email %>
+    <%# <br /> %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "Enter Email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <%# <em>(<%= @minimum_password_length %> characters minimum)</em> %>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password", placeholder: "Enter Password (6 characters minimum)" %>
+  </div>
+
+  <div class="field">
+    <%# <%= f.label :password_confirmation %> 
+    <%# <br /> %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "Enter Password confirmation" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2>Log in</h2>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div class="field">
+    <%# <%= f.label :email %>
+    <%# <br /> %>
+    <%= f.email_field :email, autofocus: true, placeholder: "Enter Email", autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%# <%= f.label :password %>
+    <%# <br /> %>
+    <%= f.password_field :password, autocomplete: "current-password", placeholder: "Enter Password" %>
+  </div>
+
+  <% if devise_mapping.rememberable? %>
+    <div class="field">
+      <%= f.check_box :remember_me %>
+      <%= f.label :remember_me %>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit "Log in" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                         Prefix Verb   URI Pattern                                                                                       Controller#Action      
+                        new_user_session GET    /users/sign_in(.:format)                                                                          devise/sessions#new    
+                            user_session POST   /users/sign_in(.:format)                                                                          devise/sessions#create 
+                    destroy_user_session DELETE /users/sign_out(.:format)                                                                         devise/sessions#destroy
+                       new_user_password GET    /users/password/new(.:format)                                                                     devise/passwords#new   
+                      edit_user_password GET    /users/password/edit(.:format)                                                                    devise/passwords#edit  
+                           user_password PATCH  /users/password(.:format)                                                                         devise/passwords#update
+                                         PUT    /users/password(.:format)                                                                         devise/passwords#update       
+                                         POST   /users/password(.:format)                                                                         devise/passwords#create       
+                cancel_user_registration GET    /users/cancel(.:format)                                                                           devise/registrations#cancel   
+                   new_user_registration GET    /users/sign_up(.:format)                                                                          devise/registrations#new      
+                  edit_user_registration GET    /users/edit(.:format)                                                                             devise/registrations#edit     
+                       user_registration PATCH  /users(.:format)                                                                                  devise/registrations#update   
+                                         PUT    /users(.:format)                                                                                  devise/registrations#update   
+                                         DELETE /users(.:format)                                                                                  devise/registrations#destroy  
+                                         POST   /users(.:format)                                                                                  devise/registrations#create   
+                   new_user_confirmation GET    /users/confirmation/new(.:format)                                                                 devise/confirmations#new      
+                       user_confirmation GET    /users/confirmation(.:format)                                                                     devise/confirmations#show     
+                                         POST   /users/confirmation(.:format)                                                                     devise/confirmations#create   
+                                    root GET    /                                                                                                 users#index
+                      user_post_comments POST   /users/:user_id/posts/:post_id/comments(.:format)                                                 comments#create
+                   new_user_post_comment GET    /users/:user_id/posts/:post_id/comments/new(.:format)                                             comments#new
+                         user_post_likes POST   /users/:user_id/posts/:post_id/likes(.:format)                                                    likes#create
+                              user_posts GET    /users/:user_id/posts(.:format)                                                                   posts#index
+                                         POST   /users/:user_id/posts(.:format)                                                                   posts#create
+                           new_user_post GET    /users/:user_id/posts/new(.:format)                                                               posts#new
+                               user_post GET    /users/:user_id/posts/:id(.:format)                                                               posts#show
+                                   users GET    /users(.:format)                                                                                  users#index
+                                    user GET    /users/:id(.:format)                                                                              users#show
+        turbo_recede_historical_location GET    /recede_historical_location(.:format)                                                             turbo/native/navigation#recede        turbo_resume_historical_location GET    /resume_historical_location(.:format)                                                             turbo/native/navigation#resume       turbo_refresh_historical_location GET    /refresh_historical_location(.:format)                                                            turbo/native/navigation#refresh
+           rails_postmark_inbound_emails POST   /rails/action_mailbox/postmark/inbound_emails(.:format)                                           action_mailbox/ingresses/postmark/inbound_emails#create
+              rails_relay_inbound_emails POST   /rails/action_mailbox/relay/inbound_emails(.:format)                                              action_mailbox/ingresses/relay/inbound_emails#create
+           rails_sendgrid_inbound_emails POST   /rails/action_mailbox/sendgrid/inbound_emails(.:format)                                           action_mailbox/ingresses/sendgrid/inbound_emails#create
+     rails_mandrill_inbound_health_check GET    /rails/action_mailbox/mandrill/inbound_emails(.:format)                                           action_mailbox/ingresses/mandrill/inbound_emails#health_check
+           rails_mandrill_inbound_emails POST   /rails/action_mailbox/mandrill/inbound_emails(.:format)                                           action_mailbox/ingresses/mandrill/inbound_emails#create
+            rails_mailgun_inbound_emails POST   /rails/action_mailbox/mailgun/inbound_emails/mime(.:format)                                       action_mailbox/ingresses/mailgun/inbound_emails#create
+          rails_conductor_inbound_emails GET    /rails/conductor/action_mailbox/inbound_emails(.:format)                                          rails/conductor/action_mailbox/inbound_emails#index
+                                         POST   /rails/conductor/action_mailbox/inbound_emails(.:format)                                          rails/conductor/action_mailbox/inbound_emails#create
+       new_rails_conductor_inbound_email GET    /rails/conductor/action_mailbox/inbound_emails/new(.:format)                                      rails/conductor/action_mailbox/inbound_emails#new
+      edit_rails_conductor_inbound_email GET    /rails/conductor/action_mailbox/inbound_emails/:id/edit(.:format)                                 rails/conductor/action_mailbox/inbound_emails#edit
+           rails_conductor_inbound_email GET    /rails/conductor/action_mailbox/inbound_emails/:id(.:format)                                      rails/conductor/action_mailbox/inbound_emails#show
+                                         PATCH  /rails/conductor/action_mailbox/inbound_emails/:id(.:format)                                      rails/conductor/action_mailbox/inbound_emails#update
+                                         PUT    /rails/conductor/action_mailbox/inbound_emails/:id(.:format)                                      rails/conductor/action_mailbox/inbound_emails#update
+                                         DELETE /rails/conductor/action_mailbox/inbound_emails/:id(.:format)                                      rails/conductor/action_mailbox/inbound_emails#destroy
+new_rails_conductor_inbound_email_source GET    /rails/conductor/action_mailbox/inbound_emails/sources/new(.:format)                              rails/conductor/action_mailbox/inbound_emails/sources#new
+   rails_conductor_inbound_email_sources POST   /rails/conductor/action_mailbox/inbound_emails/sources(.:format)                                  rails/conductor/action_mailbox/inbound_emails/sources#create
+   rails_conductor_inbound_email_reroute POST   /rails/conductor/action_mailbox/:inbound_email_id/reroute(.:format)                               rails/conductor/action_mailbox/reroutes#create
+rails_conductor_inbound_email_incinerate POST   /rails/conductor/action_mailbox/:inbound_email_id/incinerate(.:format)                            rails/conductor/action_mailbox/incinerates#create
+                      rails_service_blob GET    /rails/active_storage/blobs/redirect/:signed_id/*filename(.:format)                               active_storage/blobs/redirect#show
+                rails_service_blob_proxy GET    /rails/active_storage/blobs/proxy/:signed_id/*filename(.:format)                                  active_storage/blobs/proxy#show
+                                         GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                                        active_storage/blobs/redirect#show
+               rails_blob_representation GET    /rails/active_storage/representations/redirect/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations/redirect#show
+         rails_blob_representation_proxy GET    /rails/active_storage/representations/proxy/:signed_blob_id/:variation_key/*filename(.:format)    active_storage/representations/proxy#show
+                      rails_disk_service GET    /rails/active_storage/disk/:encoded_key/*filename(.:format)                                       active_storage/representationstive_storage/disk#show
+               update_rails_disk_service PUT    /rails/active_storage/disk/:encoded_token(.:format)                                               active_storage/disk#show      tive_storage/disk#update                                                                                                                            tive_storage/disk#update    
+                    rails_direct_uploads POST   /rails/active_storage/direct_uploads(.:format)                                                    active_storage/direct_uploads#tive_storage/direct_uploads#create
+PS C:\Users\hp\Desktop\microverse_drive\module5\week1\Blograils>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  # already_authenticated: "You are already signed in."
