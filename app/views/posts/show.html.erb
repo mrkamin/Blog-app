@@ -15,13 +15,13 @@
             </article> 
 
             <ul class="post_details_section1_user_comment_box list_style_none">
-             <% @post.latest_five_comments.each do |comment| %>
+             <% @post.latest_five_comments.includes(:author).each do |comment| %>
                 <li> <%= comment.author.name %>: <%= comment.text %></li>
              <% end %>
             </ul>
 
             <br><br>
-            <div><%= render "comments/new" %></div>
+            <div><%= render "comments/form" %> </div>
             <div><%= render "shared_features/likeforms" %></div>
         </section>
-    </main>
+</main>

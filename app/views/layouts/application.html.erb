@@ -6,7 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %> 
     <%= stylesheet_link_tag 'blogapp.css' %>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,16 +14,16 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="body">
+  <body class="body"> 
   <% flash.each do |key, message| %>
-    <div class="flash-message">
-      <%= message %>
-    </div>
-  <% end %>
-  <%= render 'shared_features/header' %>
-  <div>  
-  <%= yield %>
-  </div>
-  <%= render 'shared_features/footer' %>
+      <div class="flash-message">
+        <%= message %>
+      </div>
+    <% end %>
+  <%= render 'shared_features/header' %> 
+  <div>
+    <%= yield %>
+  </div> 
+  <%= render 'shared_features/footer' %> 
   </body>
 </html>
