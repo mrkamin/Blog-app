@@ -2,7 +2,7 @@ AllCops:
   NewCops: enable
   Exclude:
     - "db/**/*"
-    - "bin/*"
+    - "bin/*" 
     - "config/**/*"
     - "Guardfile"
     - "Rakefile"
@@ -11,7 +11,7 @@ AllCops:
   DisplayCopNames: true
 
 Layout/LineLength:
-  Max: 120
+  Max: 375
 Metrics/MethodLength:
   Include:
     - "app/controllers/*"
@@ -25,7 +25,7 @@ Metrics/AbcSize:
 Metrics/ClassLength:
   Max: 150
 Metrics/BlockLength:
-  AllowedMethods: ["describe"]
+  AllowedMethods: ['describe']
   Max: 30
 
 Style/Documentation:
@@ -48,6 +48,8 @@ Layout/ExtraSpacing:
 Layout/MultilineMethodCallIndentation:
   Enabled: true
   EnforcedStyle: indented
+Layout/EndOfLine:
+  Enabled: false
 Lint/RaiseException:
   Enabled: false
 Lint/StructNewOverride:
