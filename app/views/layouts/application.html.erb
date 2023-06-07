@@ -15,6 +15,11 @@
   </head>
 
   <body class="body">
+  <% flash.each do |key, message| %>
+    <div class="flash-message">
+      <%= message %>
+    </div>
+  <% end %>
   <%= render 'shared_features/header' %>
   <div>  
   <%= yield %>

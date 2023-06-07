@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .body {
@@ -202,3 +202,67 @@
   padding: 0 10px;
   border: 1px solid black;
 }
+
+/* LOGIN CSS */
+
+.form_section {
+  width: 80%;
+  margin: auto;
+  padding: 20px 0;
+}
+
+.login_form_article {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.form_section2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login_form_header {
+  text-align: center;
+}
+
+.login_box {
+  width: 100%;
+}
+
+.login_password {
+  width: 100%;
+  padding: 8px 8px;
+  border-radius: 10px;
+  color: black;
+  font-size: 18px;
+  font-weight: 500;
+  outline: none;
+  border: 1px solid black;
+}
+
+.login_email {
+  width: 100%;
+  padding: 8px 8px;
+  border-radius: 10px;
+  color: black;
+  font-size: 18px;
+  font-weight: 500;
+  outline: none;
+  border: 1px solid black;
+}
+
+.login_btn {
+  width: 100%;
+  padding: 8px 8px;
+  border-radius: 10px;
+  border: none;
+  background-color: #406aca;
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* LOGOUT CSS */
