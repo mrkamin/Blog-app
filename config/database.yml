@@ -87,3 +87,6 @@ production:
   database: Blog_app_production
   username: postgres
   password: password
+
+# rails db:migrate:reset RAILS_ENV=test
+
